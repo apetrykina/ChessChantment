@@ -15,10 +15,11 @@ class VOICECOMMAND_API USpeechRecognitionHelper : public UVoiceCommandHelperBase
 
 public:
 
+	~USpeechRecognitionHelper();
+	
 	virtual void StartRecognizingKeywords(TArray<FString> Keywords) override;
 	virtual void StopRecognizingSpeech() override;
-	
-	FString GetLastCommand();
+	virtual FString GetLastCommand() override;
 
 protected:
 

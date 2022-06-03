@@ -16,12 +16,12 @@ void AVoiceCommandActor::BeginPlay()
 	Super::BeginPlay();
 	
 	//Setup Helper based on SpeechRecognition Plugin
-	VoiceCommandHelper = NewObject<USpeechRecognitionHelper>();
-	VoiceCommandHelper->Rename(nullptr, this);
+	_voiceCommandHelper = NewObject<USpeechRecognitionHelper>();
+	_voiceCommandHelper->Rename(nullptr, this);
 	
-	if (VoiceCommandHelper)
+	if (_voiceCommandHelper)
 	{
-		VoiceCommandHelper->OnSpeechRecognized.BindDynamic(this, &AVoiceCommandActor::OnSpeechRecognized);
+		_voiceCommandHelper->OnSpeechRecognized.BindDynamic(this, &AVoiceCommandActor::OnSpeechRecognized);
 	}
 }
 
@@ -32,17 +32,17 @@ void AVoiceCommandActor::Tick(float DeltaTime)
 
 void AVoiceCommandActor::InitiateCommandRecognition()
 {
-	if (VoiceCommandHelper)
+	if (_voiceCommandHelper)
 	{
-		VoiceCommandHelper->StartRecognizingKeywords(GetAllCommandNames());
+		_voiceCommandHelper->StartRecognizingKeywords(GetAllCommandNames());
 	}
 }
 
 void AVoiceCommandActor::StopCommandRecognition()
 {
-	if (VoiceCommandHelper)
+	if (_voiceCommandHelper)
 	{
-		VoiceCommandHelper->StopRecognizingSpeech();
+		_voiceCommandHelper->StopRecognizingSpeech();
 	}
 }
 
@@ -86,4 +86,9 @@ TArray<FString> AVoiceCommandActor::GetAllCommandNames()
 		names.Append(context.Key->GetCommandNames());
 	}
 	return names;
+}
+
+FString AVoiceCommandActor::GetLastCommand()
+{
+	return _voiceCommandHelper->GetLastCommand();
 }

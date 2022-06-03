@@ -18,4 +18,9 @@ void UVoiceCommandHelperBase::StopRecognizingSpeech()
 	UE_LOG(LogTemp, Warning, TEXT("Recorgnition stopped."));	
 }
 
+FString UVoiceCommandHelperBase::GetLastCommand()
+{
+	return "";	
+}
+
 

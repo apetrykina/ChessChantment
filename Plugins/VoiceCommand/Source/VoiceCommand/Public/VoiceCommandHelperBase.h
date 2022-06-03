@@ -23,5 +23,8 @@ public:
 	UFUNCTION()
 	virtual void StopRecognizingSpeech();
 
+	UFUNCTION()
+	virtual FString GetLastCommand();
+
 	FOnSpeechRecognized OnSpeechRecognized;
 };

@@ -31,6 +31,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RemoveVoiceCommandContext(UVoiceCommandContext* VoiceCommandContext);
 
+	UFUNCTION(BlueprintCallable)
+	FString GetLastCommand();
+
 protected:
 	
 	virtual void BeginPlay() override;
@@ -41,7 +44,7 @@ protected:
 	TArray<FString> GetAllCommandNames();
 
 	UPROPERTY()
-	UVoiceCommandHelperBase* VoiceCommandHelper;
+	UVoiceCommandHelperBase* _voiceCommandHelper;
 
 private:
 
