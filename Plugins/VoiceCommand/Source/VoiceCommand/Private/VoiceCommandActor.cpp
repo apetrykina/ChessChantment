@@ -3,6 +3,7 @@
 
 #include "VoiceCommandActor.h"
 
+#include "AzSpeechCommandHelper.h"
 #include "SpeechRecognitionHelper.h"
 
 
@@ -15,19 +16,25 @@ void AVoiceCommandActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	//Setup Helper based on SpeechRecognition Plugin
-	_voiceCommandHelper = NewObject<USpeechRecognitionHelper>();
-	_voiceCommandHelper->Rename(nullptr, this);
+	/*//Setup Helper based on SpeechRecognition Plugin
+	_voiceCommandHelper = NewObject<USpeechRecognitionHelper>(this);*/
+
+	//Setup Helper based on AzSpeechHelper
+	_voiceCommandHelper = NewObject<UAzSpeechCommandHelper>(this);
 	
 	if (_voiceCommandHelper)
 	{
 		_voiceCommandHelper->OnSpeechRecognized.BindDynamic(this, &AVoiceCommandActor::OnSpeechRecognized);
+		_voiceCommandHelper->OnSpeechFailed.BindDynamic(this, &AVoiceCommandActor::InitiateCommandRecognition);
 	}
 }
 
-void AVoiceCommandActor::Tick(float DeltaTime)
+void AVoiceCommandActor::AzureSetInitialParams(FString APIAccessKey, FString RegionID, FString LanguageID)
 {
-	Super::Tick(DeltaTime);
+	if (auto helper = Cast<UAzSpeechCommandHelper>(_voiceCommandHelper))
+	{
+		helper->SetInitialParams(APIAccessKey, RegionID, LanguageID);
+	}
 }
 
 void AVoiceCommandActor::InitiateCommandRecognition()

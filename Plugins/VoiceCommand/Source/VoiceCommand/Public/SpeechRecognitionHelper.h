@@ -19,7 +19,6 @@ public:
 	
 	virtual void StartRecognizingKeywords(TArray<FString> Keywords) override;
 	virtual void StopRecognizingSpeech() override;
-	virtual FString GetLastCommand() override;
 
 protected:
 
@@ -32,6 +31,4 @@ private:
 
 	UPROPERTY()
 	ASpeechRecognitionActor * _speechRecognitionActor;
-
-	FString _lastCommand;
 };

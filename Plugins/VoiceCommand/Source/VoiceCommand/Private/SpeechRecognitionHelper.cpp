@@ -66,11 +66,6 @@ void USpeechRecognitionHelper::OnWordSpoken(FRecognisedPhrases phrases)
 	}
 }
 
-FString USpeechRecognitionHelper::GetLastCommand()
-{
-	return  _lastCommand;
-}
-
 TArray<FRecognitionPhrase> USpeechRecognitionHelper::GetKeywordList(TArray<FString> Keywords)
 {
 	TArray<FRecognitionPhrase> keywordList;

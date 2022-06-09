@@ -20,7 +20,7 @@ void UVoiceCommandHelperBase::StopRecognizingSpeech()
 
 FString UVoiceCommandHelperBase::GetLastCommand()
 {
-	return "";	
+	return _lastCommand;	
 }
 
 

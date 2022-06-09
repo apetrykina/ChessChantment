@@ -25,6 +25,10 @@
 		{
 			"Name": "SpeechRecognition",
 			"Enabled": true
+		},
+		{
+			"Name": "AzSpeech",
+			"Enabled": true
 		}
 	]
 }

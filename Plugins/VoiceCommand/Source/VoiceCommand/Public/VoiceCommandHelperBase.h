@@ -6,6 +6,7 @@
 #include "VoiceCommandHelperBase.generated.h"
 
 DECLARE_DYNAMIC_DELEGATE_OneParam(FOnSpeechRecognized, FString, SpeechResult);
+DECLARE_DYNAMIC_DELEGATE(FOnSpeechFailed);
 
 UCLASS()
 class VOICECOMMAND_API UVoiceCommandHelperBase : public UObject
@@ -27,4 +28,9 @@ public:
 	virtual FString GetLastCommand();
 
 	FOnSpeechRecognized OnSpeechRecognized;
+	FOnSpeechFailed OnSpeechFailed;
+
+protected:
+
+	FString _lastCommand;
 };

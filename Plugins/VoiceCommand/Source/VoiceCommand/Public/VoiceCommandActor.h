@@ -17,13 +17,14 @@ public:
 
 	AVoiceCommandActor();
 	
-	virtual void Tick(float DeltaTime) override;
-	
 	UFUNCTION(BlueprintCallable)
 	void InitiateCommandRecognition();
 
 	UFUNCTION(BlueprintCallable)
 	void StopCommandRecognition();
+
+	UFUNCTION(BlueprintCallable)
+	void AzureSetInitialParams(FString APIAccessKey, FString RegionID, FString LanguageID);
 
 	UFUNCTION(BlueprintCallable)
 	void AddVoiceCommandContext(UVoiceCommandContext* VoiceCommandContext, int32 Priority);
