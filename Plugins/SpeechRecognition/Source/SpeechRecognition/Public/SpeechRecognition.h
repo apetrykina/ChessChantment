@@ -78,13 +78,13 @@ struct FRecognitionPhrase
 
 	// if you wish to only provide a phrase
 	FRecognitionPhrase(FString keyword) {
-		this->phrase = phrase;
+		this->phrase = keyword;
 		tolerance = EPhraseRecognitionTolerance::VE_5;
 	}
 
 	// if you wish to specify both a phrase, and a tolerance setting
-	FRecognitionPhrase(FString phrase, EPhraseRecognitionTolerance tolerance) {
-		this->phrase = phrase;
+	FRecognitionPhrase(FString keyword, EPhraseRecognitionTolerance tolerance) {
+		this->phrase = keyword;
 		this->tolerance = tolerance;
 	}
 };
